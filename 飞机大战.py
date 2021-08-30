@@ -31,32 +31,32 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 
 # 载入音乐文件用于播放
-pygame.mixer.music.load("sound/game_music.ogg")
+# pygame.mixer.music.load("sound/game_music.ogg")
 # 设置音量
-pygame.mixer.music.set_volume(0.2)
+# pygame.mixer.music.set_volume(0.2)
 # 从文件或缓冲区对象创建新的Sound对象
-bullet_sound = pygame.mixer.Sound("sound/bullet.wav")
-bullet_sound.set_volume(0.2)
-bomb_sound = pygame.mixer.Sound("sound/use_bomb.wav")
-bomb_sound.set_volume(0.2)
-supply_sound = pygame.mixer.Sound("sound/supply.wav")
-supply_sound.set_volume(0.2)
-get_bomb_sound = pygame.mixer.Sound("sound/get_bomb.wav")
-get_bomb_sound.set_volume(0.2)
-get_bullet_sound = pygame.mixer.Sound("sound/get_bullet.wav")
-get_bullet_sound.set_volume(0.2)
-upgrade_sound = pygame.mixer.Sound("sound/upgrade.wav")
-upgrade_sound.set_volume(0.2)
-enemy3_fly_sound = pygame.mixer.Sound("sound/enemy3_flying.wav")
-enemy3_fly_sound.set_volume(0.2)
-enemy1_down_sound = pygame.mixer.Sound("sound/enemy1_down.wav")
-enemy1_down_sound.set_volume(0.2)
-enemy2_down_sound = pygame.mixer.Sound("sound/enemy2_down.wav")
-enemy2_down_sound.set_volume(0.2)
-enemy3_down_sound = pygame.mixer.Sound("sound/enemy3_down.wav")
-enemy3_down_sound.set_volume(0.5)
-me_down_sound = pygame.mixer.Sound("sound/me_down.wav")
-me_down_sound.set_volume(0.2)
+# bullet_sound = pygame.mixer.Sound("sound/bullet.wav")
+# bullet_sound.set_volume(0.2)
+# bomb_sound = pygame.mixer.Sound("sound/use_bomb.wav")
+# bomb_sound.set_volume(0.2)
+# supply_sound = pygame.mixer.Sound("sound/supply.wav")
+# supply_sound.set_volume(0.2)
+# get_bomb_sound = pygame.mixer.Sound("sound/get_bomb.wav")
+# get_bomb_sound.set_volume(0.2)
+# get_bullet_sound = pygame.mixer.Sound("sound/get_bullet.wav")
+# get_bullet_sound.set_volume(0.2)
+# upgrade_sound = pygame.mixer.Sound("sound/upgrade.wav")
+# upgrade_sound.set_volume(0.2)
+# enemy3_fly_sound = pygame.mixer.Sound("sound/enemy3_flying.wav")
+# enemy3_fly_sound.set_volume(0.2)
+# enemy1_down_sound = pygame.mixer.Sound("sound/enemy1_down.wav")
+# enemy1_down_sound.set_volume(0.2)
+# enemy2_down_sound = pygame.mixer.Sound("sound/enemy2_down.wav")
+# enemy2_down_sound.set_volume(0.2)
+# enemy3_down_sound = pygame.mixer.Sound("sound/enemy3_down.wav")
+# enemy3_down_sound.set_volume(0.5)
+# me_down_sound = pygame.mixer.Sound("sound/me_down.wav")
+# me_down_sound.set_volume(0.2)
 
 
 def add_small_enemies(group1, group2, num):
@@ -87,7 +87,7 @@ def inc_speed(target, inc):
 
 def main():
     #表示无限循环播放游戏背景音乐
-    pygame.mixer.music.play(-1)
+    # pygame.mixer.music.play(-1)
     
     # 生成我方飞机
     me = myplane.MyPlane(bg_size)
@@ -226,13 +226,13 @@ def main():
                 if event.key == K_SPACE:
                     if bomb_num:
                         bomb_num -= 1
-                        bomb_sound.play()
+                        # bomb_sound.play()
                         for each in enemies:
                             if each.rect.bottom > 0:
                                 each.active = False
             
             elif event.type == SUPPLY_TIME:
-                supply_sound.play()
+                # supply_sound.play()
                 if choice([True, False]):
                     bomb_supply.reset()
                 else:
@@ -249,7 +249,7 @@ def main():
         # 根据用户的得分增加难度
         if level == 1 and score > 50000:
             level = 2
-            upgrade_sound.play()
+            # upgrade_sound.play()
             # 增加3架小型敌机、2架中型敌机和1架大型敌机
             add_small_enemies(small_enemies, enemies, 3)
             add_mid_enemies(mid_enemies, enemies, 2)
@@ -258,7 +258,7 @@ def main():
             inc_speed(small_enemies, 1)
         elif level == 2 and score > 300000:
             level = 3
-            upgrade_sound.play()
+            # upgrade_sound.play()
             # 增加5架小型敌机、3架中型敌机和2架大型敌机
             add_small_enemies(small_enemies, enemies, 5)
             add_mid_enemies(mid_enemies, enemies, 3)
@@ -268,7 +268,7 @@ def main():
             inc_speed(mid_enemies, 1)
         elif level == 3 and score > 600000:
             level = 4
-            upgrade_sound.play()
+            # upgrade_sound.play()
             # 增加5架小型敌机、3架中型敌机和2架大型敌机
             add_small_enemies(small_enemies, enemies, 5)
             add_mid_enemies(mid_enemies, enemies, 3)
@@ -278,7 +278,7 @@ def main():
             inc_speed(mid_enemies, 1)
         elif level == 4 and score > 1000000:
             level = 5
-            upgrade_sound.play()
+            # upgrade_sound.play()
             # 增加5架小型敌机、3架中型敌机和2架大型敌机
             add_small_enemies(small_enemies, enemies, 5)
             add_mid_enemies(mid_enemies, enemies, 3)
@@ -308,7 +308,7 @@ def main():
                 bomb_supply.move()
                 screen.blit(bomb_supply.image, bomb_supply.rect)
                 if pygame.sprite.collide_mask(bomb_supply, me):
-                    get_bomb_sound.play()
+                    # get_bomb_sound.play()
                     if bomb_num < 3:
                         bomb_num += 1
                     bomb_supply.active = False
@@ -318,14 +318,14 @@ def main():
                 bullet_supply.move()
                 screen.blit(bullet_supply.image, bullet_supply.rect)
                 if pygame.sprite.collide_mask(bullet_supply, me):
-                    get_bullet_sound.play()
+                    # get_bullet_sound.play()
                     is_double_bullet = True
                     pygame.time.set_timer(DOUBLE_BULLET_TIME, 18 * 1000)
                     bullet_supply.active = False
             
             # 发射子弹
             if not (delay % 10):
-                bullet_sound.play()
+                # bullet_sound.play()
                 if is_double_bullet:
                     bullets = bullet2
                     bullets[bullet2_index].reset((me.rect.centerx - 33, me.rect.centery))
@@ -383,17 +383,17 @@ def main():
                                       each.rect.top - 5), 2)
                     
                     # 即将出现在画面中，播放音效
-                    if each.rect.bottom == -50:
-                        enemy3_fly_sound.play(-1)
+                    # if each.rect.bottom == -50:
+                    #     enemy3_fly_sound.play(-1)
                 else:
                     # 毁灭
                     if not (delay % 3):
-                        if e3_destroy_index == 0:
-                            enemy3_down_sound.play()
+                        # if e3_destroy_index == 0:
+                        #     enemy3_down_sound.play()
                         screen.blit(each.destroy_images[e3_destroy_index], each.rect)
                         e3_destroy_index = (e3_destroy_index + 1) % 6
                         if e3_destroy_index == 0:
-                            enemy3_fly_sound.stop()
+                            # enemy3_fly_sound.stop()
                             score += 10000
                             each.reset()
             
@@ -427,8 +427,8 @@ def main():
                 else:
                     # 毁灭
                     if not (delay % 3):
-                        if e2_destroy_index == 0:
-                            enemy2_down_sound.play()
+                        # if e2_destroy_index == 0:
+                        #     enemy2_down_sound.play()
                         screen.blit(each.destroy_images[e2_destroy_index], each.rect)
                         e2_destroy_index = (e2_destroy_index + 1) % 4
                         if e2_destroy_index == 0:
@@ -443,8 +443,8 @@ def main():
                 else:
                     # 毁灭
                     if not (delay % 3):
-                        if e1_destroy_index == 0:
-                            enemy1_down_sound.play()
+                        # if e1_destroy_index == 0:
+                        #     enemy1_down_sound.play()
                         screen.blit(each.destroy_images[e1_destroy_index], each.rect)
                         e1_destroy_index = (e1_destroy_index + 1) % 4
                         if e1_destroy_index == 0:
@@ -471,8 +471,8 @@ def main():
             else:
                 # 毁灭
                 if not (delay % 3):
-                    if me_destroy_index == 0:
-                        me_down_sound.play()
+                    # if me_destroy_index == 0:
+                    #     me_down_sound.play()
                     screen.blit(me.destroy_images[me_destroy_index], me.rect)
                     me_destroy_index = (me_destroy_index + 1) % 4
                     if me_destroy_index == 0:
