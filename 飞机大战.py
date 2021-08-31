@@ -6,6 +6,7 @@ import myplane
 import enemy
 import bullet
 import supply
+import os
 
 from pygame.locals import *
 from random import *
@@ -13,7 +14,7 @@ from random import *
 # 初始化pygame
 pygame.init()
 #初始化混音器
-pygame.mixer.init()
+# pygame.mixer.init()
 
 # 设置大小并创建一个窗口
 bg_size = width, height = 480, 700
@@ -133,7 +134,7 @@ def main():
     
     # 统计得分
     score = 0
-    score_font = pygame.font.Font("font/font.ttf", 36)
+    score_font = pygame.font.Font(os.path.join(os.getcwd(), 'font/font.ttf'), 36)
     
     # 标志是否暂停游戏
     paused = False
@@ -151,7 +152,7 @@ def main():
     # 全屏炸弹
     bomb_image = pygame.image.load("images/bomb.png").convert_alpha()
     bomb_rect = bomb_image.get_rect()
-    bomb_font = pygame.font.Font("font/font.ttf", 48)
+    bomb_font = pygame.font.Font(os.path.join(os.getcwd(), 'font/font.ttf'),48)
     bomb_num = 3
     
     # 每30秒发放一个补给包
@@ -178,7 +179,7 @@ def main():
     recorded = False
     
     # 游戏结束画面
-    gameover_font = pygame.font.Font("font/font.TTF", 48)
+    gameover_font = pygame.font.Font(os.path.join(os.getcwd(), 'font/font.ttf'), 48)
     again_image = pygame.image.load("images/again.png").convert_alpha()
     again_rect = again_image.get_rect()
     gameover_image = pygame.image.load("images/gameover.png").convert_alpha()
@@ -203,12 +204,12 @@ def main():
                     paused = not paused
                     if paused:
                         pygame.time.set_timer(SUPPLY_TIME, 0)
-                        pygame.mixer.music.pause()
-                        pygame.mixer.pause()
+                        # pygame.mixer.music.pause()
+                        # pygame.mixer.pause()
                     else:
                         pygame.time.set_timer(SUPPLY_TIME, 30 * 1000)
-                        pygame.mixer.music.unpause()
-                        pygame.mixer.unpause()
+                        # pygame.mixer.music.unpause()
+                        # pygame.mixer.unpause()
             
             elif event.type == MOUSEMOTION:
                 if paused_rect.collidepoint(event.pos):
@@ -500,10 +501,10 @@ def main():
         # 绘制游戏结束画面
         elif life_num == 0:
             # 背景音乐停止
-            pygame.mixer.music.stop()
+            # pygame.mixer.music.stop()
             
             # 停止全部音效
-            pygame.mixer.stop()
+            # pygame.mixer.stop()
             
             # 停止发放补给
             pygame.time.set_timer(SUPPLY_TIME, 0)
